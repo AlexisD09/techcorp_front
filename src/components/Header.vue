@@ -2,7 +2,9 @@
 import { ChevronDownIcon } from '@heroicons/vue/16/solid'
 import {BoltIcon, SunIcon, BellIcon, Cog6ToothIcon } from '@heroicons/vue/24/outline'
 import {onBeforeUnmount, onMounted, ref} from 'vue';
+import { useToolsStore } from "@/stores/tools.store.js";
 
+const store = useToolsStore();
 const open = ref(false);
 const dropdownRef = ref(null);
 
@@ -33,6 +35,7 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
                         focus:border-r-gray-700 transition duration-200
                         bg-gray-600/15 text-xs p-1 text-gray-500"
                placeholder="Search Tools..."
+               v-model="store.search"
         >
       </div>
       <div><SunIcon class="w-5 h-5 text-yellow-300" /></div>
@@ -46,8 +49,8 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
           </button>
 
           <div class="absolute right-0 mt-2 w-32 border-1 rounded-md border-gray-600/30 bg-black shadow-lg group-hover:block" v-if="open">
-            <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 hover:cursor-pointer">Mon compte</button>
-            <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 hover:cursor-pointer">Déconnexion</button>
+            <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">Mon compte</button>
+            <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">Déconnexion</button>
           </div>
         </div>
       </div>
