@@ -9,7 +9,7 @@
       <h1 class="font-bold text-3xl text-white">Internal Tools Dashboard</h1>
       <p>Monitor and manage your organization's software tools and expenses</p>
     </div>
-    <div class="flex flex-row pt-7 justify-between mb-10">
+    <div id="card-container" class="flex flex-row pt-7 justify-between mb-10 gap-5">
       <div class="kpi-card">
         <div class="flex items-center justify-between">
           Monthly Budget <span class="green-gradient p-2 rounded-xl"><PresentationChartLineIcon class="w-5 h-5 text-white"/></span>
@@ -133,12 +133,14 @@
 <style scoped>
   @reference "../assets/main.css";
 
-  .kpi-card {
-    @apply w-1/5 border-1 rounded-md border-gray-600/30 p-5 bg-black/20;
+  @media screen and (max-width: 1023px) {
+    #card-container{
+      flex-wrap: wrap;
+    }
   }
 
-  .status-pills {
-    @apply text-white/80 p-0.5 pr-2.5 pl-2.5 rounded-lg;
+  .kpi-card {
+    @apply w-3/12 border-1 rounded-md border-gray-600/30 p-5 bg-black/20;
   }
 
   table#tools th,
