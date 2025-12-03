@@ -14,8 +14,6 @@ const formatDate = (date) => {
 };
 
 const openedDropdownId = ref(null);
-let maxCost = 0;
-let minCost = 0;
 
 const toggleDropdown = (id) => {
   openedDropdownId.value =

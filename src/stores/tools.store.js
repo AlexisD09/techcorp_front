@@ -1,11 +1,10 @@
 import { defineStore } from "pinia";
-import { getTools, getToolById } from "@/api/tools.api.js";
+import {getTools, getToolById, getRecentTools} from "@/api/tools.api.js";
 
 export const useToolsStore = defineStore("tools", {
     state: () => ({
         tools: [],
         selectedTool: null,
-        filtered: 0,
         page: 1,
         limit: 10,
         loading: false,
@@ -85,6 +84,19 @@ export const useToolsStore = defineStore("tools", {
             }
         },
 
+        async fetch30DaysAgoTools() {
+            try {
+                this.loading = true;
+                this.error = null;
+
+                this.tools = await getRecentTools();
+            } catch (err) {
+                this.error = err.message || "Erreur récupération outils";
+            } finally {
+                this.loading = false;
+            }
+        },
+
         setSort(key) {
             if (this.sortKey === key) {
                 this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
@@ -126,11 +138,5 @@ export const useToolsStore = defineStore("tools", {
             this.page = page;
             this.fetchTools();
         },
-
-        setLimit(limit) {
-            this.limit = limit;
-            this.page = 1;
-            this.fetchTools();
-        }
     }
 });

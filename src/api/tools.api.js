@@ -21,3 +21,16 @@ export const getToolById = async (id) => {
     const { data } = await fetch(APIURL+`/tools/${id}`);
     return data;
 };
+
+export const getRecentTools = async () => {
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const isoDate = thirtyDaysAgo.toISOString();
+
+    const res = await fetch(
+        `${APIURL}/tools?_sort=updated_at&_order=desc&updated_at_gte=${isoDate}`
+    );
+
+    return await res.json();
+};
