@@ -24,7 +24,7 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
       <div class="flex flex-row gap-2 items-center justify-center text-white font-bold"><span class="blue-purple-gradient p-1 rounded-lg"><BoltIcon class="w-4 h-4" /></span><router-link to="/">TechCorp</router-link></div>
       <div><router-link to="/">Dashboard</router-link></div>
       <div><router-link to="/tools">Tools</router-link></div>
-      <div>Analytics</div>
+      <div><router-link to="/analytics">Analytics</router-link></div>
       <div>Settings</div>
     </div>
     <div class="flex flex-row justify-center items-center gap-5">
@@ -49,8 +49,8 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
           </button>
 
           <div class="absolute right-0 mt-2 w-32 border-1 rounded-md border-gray-600/30 bg-black shadow-lg group-hover:block" v-if="open">
-            <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">Mon compte</button>
-            <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">Déconnexion</button>
+            <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">My account</button>
+            <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">Disconnect</button>
           </div>
         </div>
       </div>
