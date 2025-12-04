@@ -2,10 +2,10 @@
 import {Bars3Icon} from "@heroicons/vue/24/outline";
 import { useToolsStore } from "@/stores/tools.store.js";
 import {onBeforeUnmount, onMounted, ref, watch} from "vue";
-
+import DetailsModal from "@/components/DetailsModal.vue";
 const props = defineProps(['page']);
-
 const toolStore = useToolsStore();
+const openedDropdownId = ref(null);
 
 watch(
     () => props.page,
@@ -25,8 +25,6 @@ const formatDate = (date) => {
     hour: '2-digit', minute: '2-digit'
   }).replace(',', ' -')
 };
-
-const openedDropdownId = ref(null);
 
 const toggleDropdown = (id) => {
   openedDropdownId.value =
@@ -98,9 +96,14 @@ onBeforeUnmount(() => {
                 <Bars3Icon class="w-5 h-5" />
               </button>
 
-              <div class="absolute right-4 bottom-6 mt-2 w-32 border-1 rounded-md border-gray-600/30 bg-black shadow-lg group-hover:block" v-if="openedDropdownId === tool.id">
+              <div class="absolute mt-2 w-32 border-1 rounded-md border-gray-600/30 bg-black shadow-lg group-hover:block" v-if="openedDropdownId === tool.id"
+                   :class="{
+                          'left-2 bottom-6': props.page === 'tools',
+                          'bottom-6': props.page === 'dashboard'
+                        }"
+              >
                 <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">Edit</button>
-                <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">View details</button>
+                <DetailsModal :tool=tool />
                 <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">{{ tool.status === 'active' ? 'Disable' : 'Enable' }}</button>
               </div>
             </div>
@@ -122,4 +125,5 @@ onBeforeUnmount(() => {
   table#tools th {
     @apply border-gray-600/50;
   }
+
 </style>

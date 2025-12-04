@@ -1,6 +1,6 @@
 <script setup>
 import ToolsTab from "@/components/ToolsTab.vue";
-import FiltersTab from "@/components/FiltersTab.vue";
+import TabFilters from "@/components/TabFilters.vue";
 import Pagination from "@/components/Pagination.vue";
 </script>
 
@@ -10,7 +10,7 @@ import Pagination from "@/components/Pagination.vue";
       <div class="flex items-center justify-between pb-5">
         <div class="flex"><h2 class="font-bold text-xl text-white">Tools</h2></div>
       </div>
-      <FiltersTab />
+      <TabFilters />
       <ToolsTab page="tools" />
       <Pagination />
     </div>
