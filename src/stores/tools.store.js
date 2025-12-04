@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import {getTools, getToolById, getRecentTools, updateToolStatus} from "@/api/tools.api.js";
+import {getTools, getToolById, getRecentTools, updateToolStatus, updateTool} from "@/api/tools.api.js";
 
 export const useToolsStore = defineStore("tools", {
     state: () => ({
@@ -105,7 +105,17 @@ export const useToolsStore = defineStore("tools", {
 
                 tool.status = updated.status;
             } catch (err) {
-                console.log("Impossible de changer le statut :", err.message);
+                this.error = "Impossible de changer le statut :"+err.message;
+            }
+        },
+
+        async updateToolData (tool) {
+            try {
+                const updated = await updateTool(tool.id, tool);
+                const index = this.tools.findIndex(t => t.id === tool.id);
+                if (index !== -1) this.tools[index] = updated;
+            } catch (err) {
+                this.error = "Erreur update tool:"+err.message;
             }
         },
 

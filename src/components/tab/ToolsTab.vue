@@ -2,7 +2,8 @@
 import {Bars3Icon} from "@heroicons/vue/24/outline";
 import { useToolsStore } from "@/stores/tools.store.js";
 import {onBeforeUnmount, onMounted, ref, watch} from "vue";
-import DetailsModal from "@/components/DetailsModal.vue";
+import DetailsModal from "@/components/modals/DetailsModal.vue";
+import EditModal from "@/components/modals/EditModal.vue";
 const props = defineProps(['page']);
 const toolStore = useToolsStore();
 const openedDropdownId = ref(null);
@@ -102,7 +103,7 @@ onBeforeUnmount(() => {
                           'bottom-6': props.page === 'dashboard'
                         }"
               >
-                <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">Edit</button>
+                <EditModal :tool=tool />
                 <DetailsModal :tool=tool />
                 <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer" @click="toolStore.toggleStatus(tool)">{{ tool.status === 'active' ? 'Disable' : 'Enable' }}</button>
               </div>
@@ -115,7 +116,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-  @reference "../assets/main.css";
+  @reference "@/assets/main.css";
 
   table#tools th,
   table#tools td {

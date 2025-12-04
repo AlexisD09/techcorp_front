@@ -46,7 +46,7 @@
 </template>
 
 <style scoped>
-  @reference "../assets/main.css";
+  @reference "@/assets/main.css";
 
   input[type="range"] {
     accent-color: rgb(74 85 101);

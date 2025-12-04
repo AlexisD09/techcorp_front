@@ -1,7 +1,7 @@
 <script setup>
-import ToolsTab from "@/components/ToolsTab.vue";
-import TabFilters from "@/components/TabFilters.vue";
-import Pagination from "@/components/Pagination.vue";
+import ToolsTab from "@/components/tab/ToolsTab.vue";
+import TabFilters from "@/components/tab/TabFilters.vue";
+import Pagination from "@/components/tab/Pagination.vue";
 </script>
 
 <template>

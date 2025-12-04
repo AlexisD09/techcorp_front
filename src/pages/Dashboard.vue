@@ -1,7 +1,7 @@
 <script setup>
   import {CalendarIcon} from '@heroicons/vue/24/outline';
-  import ToolsTab from "@/components/ToolsTab.vue";
-  import Pagination from "@/components/Pagination.vue";
+  import ToolsTab from "@/components/tab/ToolsTab.vue";
+  import Pagination from "@/components/tab/Pagination.vue";
   import Kpi from "@/components/Kpi.vue";
 </script>
 

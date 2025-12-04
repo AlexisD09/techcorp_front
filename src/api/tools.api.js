@@ -50,3 +50,18 @@ export const updateToolStatus = async (id, newStatus) => {
         console.error(error);
     }
 }
+
+export const updateTool = async (id, data) => {
+    try {
+        const res = await fetch(`${APIURL}/tools/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+
+        return await res.json();
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+};
