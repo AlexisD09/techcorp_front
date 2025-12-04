@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
               >
                 <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">Edit</button>
                 <DetailsModal :tool=tool />
-                <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer">{{ tool.status === 'active' ? 'Disable' : 'Enable' }}</button>
+                <button class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded-md hover:cursor-pointer" @click="toolStore.toggleStatus(tool)">{{ tool.status === 'active' ? 'Disable' : 'Enable' }}</button>
               </div>
             </div>
           </td>

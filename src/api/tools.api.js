@@ -34,3 +34,19 @@ export const getRecentTools = async () => {
 
     return await res.json();
 };
+
+export const updateToolStatus = async (id, newStatus) => {
+    try {
+        const res = await fetch(`${APIURL}/tools/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ status: newStatus }),
+        });
+
+        return await res.json();
+    } catch (error) {
+        console.error(error);
+    }
+}

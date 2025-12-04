@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import {getTools, getToolById, getRecentTools} from "@/api/tools.api.js";
+import {getTools, getToolById, getRecentTools, updateToolStatus} from "@/api/tools.api.js";
 
 export const useToolsStore = defineStore("tools", {
     state: () => ({
@@ -97,6 +97,18 @@ export const useToolsStore = defineStore("tools", {
             }
         },
 
+        async toggleStatus (tool) {
+            const newStatus = tool.status === "active" ? "unused" : "active";
+
+            try {
+                const updated = await updateToolStatus(tool.id, newStatus);
+
+                tool.status = updated.status;
+            } catch (err) {
+                console.log("Impossible de changer le statut :", err.message);
+            }
+        },
+
         setSort(key) {
             if (this.sortKey === key) {
                 this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
@@ -115,23 +127,6 @@ export const useToolsStore = defineStore("tools", {
             } finally {
                 this.loading = false;
             }
-        },
-
-        setFilter(key, value) {
-            this.filters[key] = value;
-            this.page = 1;
-            this.fetchTools();
-        },
-
-        resetFilters() {
-            this.filters = {
-                name: "",
-                department: "",
-                status: "",
-                category: ""
-            };
-            this.page = 1;
-            this.fetchTools();
         },
 
         setPage(page) {
