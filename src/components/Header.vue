@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ChevronDownIcon } from '@heroicons/vue/16/solid'
 import {BoltIcon, SunIcon, BellIcon, Cog6ToothIcon } from '@heroicons/vue/24/outline'
 import {onBeforeUnmount, onMounted, ref} from 'vue';
